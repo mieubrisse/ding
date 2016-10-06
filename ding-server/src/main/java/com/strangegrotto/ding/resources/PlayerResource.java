@@ -1,4 +1,4 @@
-package com.strangegrotto.taskdungeon.player;/*
+package com.strangegrotto.ding.resources;/*
  * Copyright 2016 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,19 @@ package com.strangegrotto.taskdungeon.player;/*
  * limitations under the License.
  */
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.strangegrotto.ding.PlayerService;
+import com.strangegrotto.ding.PlayerStatus;
 
-public class PlayerStatus {
+public class PlayerResource implements PlayerService {
 
-    private final int hp;
+    private final String name;
 
-    @JsonCreator
-    public PlayerStatus(@JsonProperty("hp") int hp) {
-        this.hp = hp;
+    public PlayerResource(String name) {
+        this.name = name;
     }
 
-    public int getHp() {
-        return hp;
+    @Override
+    public PlayerStatus getStatus(String playerId) {
+        return new PlayerStatus(100, name);
     }
 }

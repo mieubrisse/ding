@@ -1,4 +1,4 @@
-package com.strangegrotto.taskdungeon.config;/*
+package com.strangegrotto.ding;/*
  * Copyright 2016 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,14 +14,25 @@ package com.strangegrotto.taskdungeon.config;/*
  * limitations under the License.
  */
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.dropwizard.Configuration;
 
-public class DungeonConfig extends Configuration{
+public class PlayerStatus {
 
-    @JsonProperty public int port;
+    private final int hp;
+    private final String name;
 
-    public int getPort() {
-        return port;
+    @JsonCreator
+    public PlayerStatus(@JsonProperty("hp") int hp, @JsonProperty("name") String name) {
+        this.hp = hp;
+        this.name = name;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -1,0 +1,5 @@
+assets:
+  overrides:
+    /assets/: ../ding-app/build/src
+
+playerName: Kevin

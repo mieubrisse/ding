@@ -1,4 +1,4 @@
-package com.strangegrotto.taskdungeon.player;
+package com.strangegrotto.ding;
 
 import com.codahale.metrics.annotation.Timed;
 

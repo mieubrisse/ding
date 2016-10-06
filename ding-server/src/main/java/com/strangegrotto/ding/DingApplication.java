@@ -1,4 +1,4 @@
-package com.strangegrotto.taskdungeon;/*
+package com.strangegrotto.ding;/*
  * Copyright 2016 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,26 @@ package com.strangegrotto.taskdungeon;/*
  * limitations under the License.
  */
 
-import com.strangegrotto.taskdungeon.config.DungeonConfig;
-import com.strangegrotto.taskdungeon.resources.PlayerResource;
+import com.strangegrotto.ding.config.DingConfiguration;
+import com.strangegrotto.ding.resources.PlayerResource;
 import io.dropwizard.Application;
+import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
+import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-public class DungeonApplication extends Application<DungeonConfig> {
+public class DingApplication extends Application<DingConfiguration> {
 
     public static void main(String[] args) throws Exception {
-        new DungeonApplication().run(args);
+        new DingApplication().run(args);
     }
 
     @Override
-    public void run(DungeonConfig configuration, Environment environment) throws Exception {
-        environment.jersey().register(new PlayerResource());
+    public void initialize(Bootstrap<DingConfiguration> bootstrap) {
+        bootstrap.addBundle(new ConfiguredAssetsBundle());
+    }
+
+    @Override
+    public void run(DingConfiguration configuration, Environment environment) throws Exception {
+        environment.jersey().register(new PlayerResource(configuration.getName()));
     }
 }

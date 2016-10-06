@@ -1,3 +1,15 @@
+apply from: "${rootDir}/gradle/java.gradle"
+
+task runDev(type: JavaExec) {
+    dependsOn ':ding-app:buildDev'
+    classpath project.sourceSets.main.runtimeClasspath
+    main 'com.strangegrotto.ding.DingApplication'
+    args('server', 'dev/conf/server.yml')
+}
+
 dependencies {
-    compile project(':task-dungeon-api')
+    compile project(':ding-api')
+
+    compile "io.dropwizard-bundles:dropwizard-configurable-assets-bundle:${dropwizardAssetsBundleVersion}"
+    compile "com.palantir.indexpage:dropwizard-index-page:${ptIndexPageBundleVersion}"
 }

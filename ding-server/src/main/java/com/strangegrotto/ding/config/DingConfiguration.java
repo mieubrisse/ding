@@ -1,4 +1,4 @@
-package com.strangegrotto.taskdungeon.resources;/*
+package com.strangegrotto.ding.config;/*
  * Copyright 2016 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +14,25 @@ package com.strangegrotto.taskdungeon.resources;/*
  * limitations under the License.
  */
 
-import com.strangegrotto.taskdungeon.player.PlayerService;
-import com.strangegrotto.taskdungeon.player.PlayerStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.Configuration;
+import io.dropwizard.bundles.assets.AssetsBundleConfiguration;
+import io.dropwizard.bundles.assets.AssetsConfiguration;
 
-public class PlayerResource implements PlayerService {
+public class DingConfiguration extends Configuration implements AssetsBundleConfiguration {
+
+    @JsonProperty("playerName")
+    private String name;
+
+    @JsonProperty("assets")
+    public AssetsConfiguration assets = AssetsConfiguration.builder().build();
+
+    public String getName() {
+        return name;
+    }
+
     @Override
-    public PlayerStatus getStatus(String playerId) {
-        return new PlayerStatus(100);
+    public AssetsConfiguration getAssetsConfiguration() {
+        return assets;
     }
 }

@@ -1,0 +1,11 @@
+apply plugin: 'com.moowork.node'
+apply plugin: 'com.palantir.npm-run'
+
+node {
+    version = project.ext.nodeVersion
+    npmVersion = project.ext.npmVersion
+    distBaseUrl = 'https://nodejs.org/dist'
+    download = true
+    workDir = file("${rootProject.buildDir}/nodejs")
+    nodeModulesDir = file("${project.projectDir}")
+}

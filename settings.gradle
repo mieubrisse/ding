@@ -20,3 +20,4 @@ rootProject.name = 'ding'
 
 include 'ding-api'
 include 'ding-server'
+include 'ding-app'

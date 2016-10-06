@@ -1,10 +1,15 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
         classpath "com.palantir.gradle.gitversion:gradle-git-version:${ptVersioningVersion}"
+        classpath "com.palantir.npmrun:gradle-npm-run-plugin:${npmRunPluginVersion}"
+        classpath "com.moowork.gradle:gradle-node-plugin:${nodePluginVersion}"
     }
 }
 
@@ -12,20 +17,7 @@ apply plugin: 'com.palantir.git-version'
 
 allprojects {
     apply plugin: "idea"
-    apply plugin: "java"
 
     version gitVersion()
 
-    // In this section you declare where to find the dependencies of your project
-    repositories {
-        mavenCentral()
-    }
-
-    // In this section you declare the dependencies for your production and test code
-    dependencies {
-        compile 'org.slf4j:slf4j-api:1.7.18'
-        compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
-
-        testCompile 'junit:junit:4.12'
-    }
 }
